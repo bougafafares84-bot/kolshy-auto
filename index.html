@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كلشي - بيع وشراء</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui;background:#0f0f0f;color:#fff}
+header{background:#1a1a1a;padding:16px;text-align:center;border-bottom:2px solid #ff3b30;position:sticky;top:0}
+header h1{color:#ff3b30}
+.container{max-width:500px;margin:0 auto;padding:12px}
+.card{background:#1e1e1e;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #2a2a2a}
+.card img{width:100%;border-radius:12px;max-height:250px;object-fit:cover}
+.price{color:#00ff88;font-weight:bold;font-size:20px}
+.phone{background:#ff3b30;color:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:10px;display:block;text-decoration:none;font-weight:bold}
+.form-card{background:#1e1e1e;border:2px solid #ff3b30;border-radius:16px;padding:18px;margin:20px 0}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#0f0f0f;color:#fff;margin-bottom:10px}
+button.main{width:100%;padding:14px;background:#ff3b30;color:#fff;border:none;border-radius:12px;font-size:17px;font-weight:bold}
+</style>
+</head>
+<body>
+<header><h1>كلشي 🇩🇿</h1><p>انشر و بيع في 10 ثواني - 500 دج</p></header>
+<div class="container">
+<div class="form-card">
+<h2 style="color:#ff3b30;text-align:center;margin-bottom:12px">📢 انشر إعلانك</h2>
+<input id="title" placeholder="واش تبيع؟ iPhone 13">
+<input id="price" placeholder="السعر: 50000 دج">
+<input id="phone" placeholder="رقم الهاتف: 05xx">
+<input id="image" placeholder="رابط الصورة (اختياري)">
+<button class="main" onclick="publish()">انشر الآن - يظهر للجميع ✅</button>
+</div>
+<div id="ads">جاري التحميل...</div>
+</div>
+<script>
+const SUPABASE_URL = 'https://ltgonfjovcfbltqlkzcb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_kv4w0TE9iTiJMNu95ukGcA_JNw2cu0s';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+async function loadAds(){
+const { data } = await supabaseClient.from('ads').select('*').order('created_at', {ascending:false});
+if(!data || data.length===0){ document.getElementById('ads').innerHTML = '<p style=text-align:center;color:#888>لا يوجد إعلانات بعد</p>'; return; }
+document.getElementById('ads').innerHTML = data.map(ad=>`
+<div class="card">
+${ad.image ? `<img src="${ad.image}">` : ''}
+<h3>${ad.title}</h3>
+<div class="price">${ad.price}</div>
+<a class="phone" href="tel:${ad.phone}">📞 ${ad.phone}</a>
+</div>
+`).join('');
+}
+async function publish(){
+const title=document.getElementById('title').value, price=document.getElementById('price').value, phone=document.getElementById('phone').value, image=document.getElementById('image').value;
+if(!title||!price||!phone){ alert('عمر الخانات!'); return; }
+const { error } = await supabaseClient.from('ads').insert([{ title, price, phone, image }]);
+if(error){ alert(error.message); return; }
+alert('تم النشر! 🎉'); loadAds();
+}
+loadAds();
+</script>
+</body>
+</html>
