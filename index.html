@@ -3,68 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>50k - رابط واحد</title>
+<title>KOLSHY - سوق كلشي</title>
 <style>
-body{font-family:Arial;max-width:700px;margin:auto;padding:15px;background:#f5f5f5}
-.box{background:#fff;padding:18px;border-radius:18px;margin:12px 0;box-shadow:0 2px 10px #0001;text-align:center}
-.btn{width:100%;padding:18px;border:0;border-radius:14px;font-weight:bold;font-size:19px;cursor:pointer;margin:8px 0}
-.purple{background:#7c3aed;color:#fff}
-.black{background:#000;color:#fff}
-.green{background:#111;color:#fff}
-#list{max-height:350px;overflow:auto;background:#f9f9f9;border-radius:12px;padding:10px;text-align:right;font-size:13px;margin-top:10px}
-.item{padding:6px;border-bottom:1px solid #eee}
+body{font-family:Arial;text-align:center;background:#f5f5f5;margin:0}
+.hero{background:linear-gradient(135deg,#ff3b30,#ff9500);color:#fff;padding:50px 20px}
+.box{max-width:600px;margin:-30px auto 20px;background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 30px #0002}
+.btn{display:block;width:100%;padding:18px;background:#000;color:#fff;border-radius:14px;font-weight:bold;font-size:20px;text-decoration:none;margin:12px 0}
 </style>
 </head>
 <body>
+<div class="hero">
+<h1>🔥 KOLSHY - سوق كلشي في سطيف وباتنة 🔥</h1>
+<p>عندك تليفون، سيارة، حاجة تبيعها؟</p>
+</div>
 <div class="box">
-<h2>📦 50 ألف منتج جاهز</h2>
-<p>ماتلصق والو، الصفحة تولد 50 ألف وحدها</p>
-<button class="btn purple" onclick="generate50k()">⚡ ولّد 50 ألف منتج الآن</button>
-<p>العدد: <span id="cnt" style="font-weight:bold;color:#7c3aed">0</span></p>
+<h2>انشرها عندنا بـ 500 دج برك!</h2>
+<p>آلاف الناس تشوفها! ساهل، سريع، وآمن عبر الذهبية!</p>
+<a class="btn" href="https://wa.me/213000000000">📲 انشر إعلانك الآن</a>
 </div>
-
-<div class="box" id="resultBox" style="display:none">
-<h3>✅ وجدت <span id="total"></span> منتج</h3>
-<button class="btn black" onclick="copyAll()">📋 نسخ كل المنتجات مرة وحدة (50k)</button>
-<button class="btn green" onclick="downloadTxt()">⬇️ تحميل ملف 50k.txt</button>
-<div id="list"></div>
-</div>
-
-<script>
-let allProducts=[];
-function generate50k(){
-  let brands=["Clio 4","Symbol","Picanto","i10","301","208","Ibiza","Leon","Golf 7","Golf 8","Accent","Rio","Sail","Spark","Duster","Stepway","Logan","Kangoo","Partner","Caddy","Hilux","Tucson","Sportage","Atos","Creta"];
-  let wilayas=["بجاية","الجزائر","وهران","سطيف","البليدة","تيزي وزو","قسنطينة","عنابة","باتنة","بسكرة","تلمسان","الشلف"];
-  allProducts=[];
-  for(let i=1;i<=50000;i++){
-    let b=brands[i%brands.length];
-    let w=wilayas[i%wilayas.length];
-    let year=2012+(i%13);
-    let price=110+(i%340);
-    let km=5+(i%195);
-    allProducts.push(b+" "+year+" - "+km+"k KM - "+w+" - "+price+" مليون - #"+i);
-  }
-  document.getElementById('cnt').innerText=allProducts.length;
-  document.getElementById('total').innerText=allProducts.length;
-  document.getElementById('resultBox').style.display='block';
-  let listDiv=document.getElementById('list');
-  listDiv.innerHTML='';
-  allProducts.slice(0,300).forEach((p,i)=>{
-    let d=document.createElement('div');d.className='item';d.textContent=(i+1)+". "+p;listDiv.appendChild(d);
-  });
-  listDiv.innerHTML+=`<div class="item">... و ${allProducts.length-300} منتج آخر مخفي (يتنسخ كامل)</div>`;
-  window.scrollTo(0,1000);
-}
-function copyAll(){
-  if(allProducts.length==0) return alert('ولّد أولا');
-  let fullText=allProducts.join('\n');
-  navigator.clipboard.writeText(fullText).then(()=>{alert('✅ تم نسخ 50 ألف منتج! روح الصق وين تحب');});
-}
-function downloadTxt(){
-  let blob=new Blob([allProducts.join('\n')],{type:'text/plain'});
-  let url=URL.createObjectURL(blob);
-  let a=document.createElement('a');a.href=url;a.download='50k-products.txt';a.click();
-}
-</script>
 </body>
 </html>
