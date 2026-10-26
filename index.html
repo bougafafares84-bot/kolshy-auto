@@ -1,45 +1,39 @@
-"use client";
-import { useState } from "react";
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kolshy - انشر اعلانك</title>
+<style>
+body{font-family:Arial;padding:15px;max-width:400px;margin:auto;text-align:center;background:#f9f9f9}
+input{width:100%;padding:12px;margin:8px 0;border-radius:12px;border:1px solid #ccc;box-sizing:border-box}
+.btn{width:100%;padding:15px;border:0;border-radius:15px;font-size:18px;font-weight:bold;cursor:pointer;margin:5px 0}
+.purple{background:#7c3aed;color:#fff}
+.black{background:#000;color:#fff;display:block;text-decoration:none;padding:12px;border-radius:12px;margin:10px 0}
+.green{background:#22c55e;color:#fff}
+.box{background:#e0f8e0;padding:15px;border-radius:12px;margin:10px 0}
+</style>
+</head>
+<body>
+<h2>🚀 انشر إعلانك - 500 دج</h2>
+<input placeholder="واش تبيع؟">
+<input placeholder="السعر">
+<input placeholder="رقم هاتفك">
 
-export default function Page() {
-  const [copied, setCopied] = useState(false);
-  
-  const copy = () => {
-    navigator.clipboard.writeText("u7629045");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+<div class="box"><b>💳 طريقة الدفع:</b><br>1- افتح تطبيق Chargily<br>2- ابحث عن: u7629045</div>
 
-  return (
-    <div style={{ padding: 20, maxWidth: 400, margin: "auto", textAlign: "center", fontFamily: "Arial" }}>
-      <h2>🚀 انشر إعلانك - 500 دج</h2>
-      
-      <input placeholder="واش تبيع؟" style={{ width: "100%", padding: 12, margin: "10px 0", borderRadius: 12, border: "1px solid #ccc" }} />
-      <input placeholder="السعر" style={{ width: "100%", padding: 12, margin: "10px 0", borderRadius: 12, border: "1px solid #ccc" }} />
-      <input placeholder="رقم هاتفك" style={{ width: "100%", padding: 12, margin: "10px 0", borderRadius: 12, border: "1px solid #ccc" }} />
+<button class="btn purple" onclick="copyMe()" id="copyBtn">📋 اضغط @u7629045 للنسخ</button>
+<a href="https://chargi.ly/@u7629045" target="_blank" class="black">افتح بروفايلي مباشرة</a>
 
-      <div style={{ background: "#e0f8e0", padding: 15, borderRadius: 12, margin: "10px 0" }}>
-        <b>💳 طريقة الدفع:</b><br/>
-        1- افتح تطبيق Chargily<br/>
-        2- اضغط بحث واكتب: u7629045
-      </div>
+<div class="box">3- ابعث 500 دج<br>4- ارجع هنا واضغط تم الدفع</div>
+<button class="btn green">تم الدفع ✅</button>
 
-      <button onClick={copy} style={{ width: "100%", padding: 15, background: "#7c3aed", color: "white", border: 0, borderRadius: 15, fontSize: 20, fontWeight: "bold", cursor: "pointer" }}>
-        {copied ? "✅ تم النسخ!" : "📋 اضغط @u7629045 للنسخ"}
-      </button>
-
-      <a href="https://chargi.ly/@u7629045" target="_blank" style={{ display: "block", marginTop: 15, background: "#000", color: "#fff", padding: 12, borderRadius: 12, textDecoration: "none" }}>
-        افتح بروفايلي مباشرة
-      </a>
-
-      <div style={{ background: "#e0f8e0", padding: 15, borderRadius: 12, margin: "10px 0" }}>
-        3- ابعث 500 دج<br/>
-        4- ارجع هنا واضغط تم الدفع
-      </div>
-
-      <button style={{ width: "100%", padding: 15, background: "#22c55e", color: "white", border: 0, borderRadius: 15, fontSize: 18, fontWeight: "bold" }}>
-        تم الدفع ✅
-      </button>
-    </div>
-  );
+<script>
+function copyMe(){
+  navigator.clipboard.writeText("u7629045");
+  document.getElementById("copyBtn").innerText="✅ تم النسخ!";
+  setTimeout(()=>{document.getElementById("copyBtn").innerText="📋 اضغط @u7629045 للنسخ"},2000);
 }
+</script>
+</body>
+</html>
